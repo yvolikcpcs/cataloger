@@ -1,7 +1,9 @@
 import type { Book } from '../types';
 import type { Column } from '../types/table';
-import { books } from '../data/books';
+import { books as seedBooks} from '../data/books';
 import { GenericPage } from './GenericPage';
+import { StaticRepoFactory } from '@/core/repo/StaticRepoFactory';
+import { useEffect, useState } from 'react';
 
 const columns: Column<Book>[] = [
   { key: 'id', label: 'ID' },
@@ -11,6 +13,12 @@ const columns: Column<Book>[] = [
 ];
 
 export default function BooksPage() {
-    return <GenericPage<Book> title="Cars" data={books} columns={columns} />;
+  const repo = StaticRepoFactory.create<Book>("books", seedBooks);
+  const [data, setData] = useState<Book[]>([]);
+
+  useEffect(() => {
+    repo.getAll().then(setData);
+  }, [repo]);
+  return <GenericPage<Book> title="Books" data={data} columns={columns} />;
   
 }

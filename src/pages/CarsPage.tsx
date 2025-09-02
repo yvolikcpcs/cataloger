@@ -1,7 +1,9 @@
+import { StaticRepoFactory } from '@/core/repo/StaticRepoFactory';
 import type { Car } from '../types';
 import type { Column } from '../types/table';
-import { cars } from '../data/cars';
 import { GenericPage } from './GenericPage';
+import { useEffect, useState } from 'react';
+import { cars as seedCars } from "@/data/cars";
 
 const columns: Column<Car>[] = [
   { key: 'id', label: 'ID' },
@@ -35,5 +37,11 @@ const columns: Column<Car>[] = [
 
 
 export default function CarsPage() {
-  return <GenericPage<Car> title="Cars" data={cars} columns={columns} />;
+  const repo = StaticRepoFactory.create<Car>("cars", seedCars);
+  const [data, setData] = useState<Car[]>([]);
+
+  useEffect(() => {
+    repo.getAll().then(setData);
+  }, [repo]);
+  return <GenericPage<Car> title="Cars" data={data} columns={columns} />;
 }

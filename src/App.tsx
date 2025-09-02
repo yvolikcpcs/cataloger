@@ -2,6 +2,7 @@ import { NavLink, Route, Routes, Navigate } from 'react-router-dom';
 import BooksPage from './pages/BooksPage';
 import CarsPage from './pages/CarsPage';
 import PaintingsPage from './pages/PaintingsPage';
+import UsersPage from './pages/UsersPage';
 
 export default function App() {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -24,6 +25,9 @@ export default function App() {
               <NavLink to="/paintings" className={linkClass}>
                 Paintings
               </NavLink>
+              <NavLink to="/users" className={linkClass}>
+                Users
+              </NavLink>
             </div>
           </nav>
         </div>
@@ -36,6 +40,8 @@ export default function App() {
             <Route path="/books" element={<BooksPage />} />
             <Route path="/cars" element={<CarsPage />} />
             <Route path="/paintings" element={<PaintingsPage />} />
+            <Route path="/users" element={<UsersPage />} />
+
             <Route
               path="*"
               element={
