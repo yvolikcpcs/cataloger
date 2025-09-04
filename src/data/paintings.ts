@@ -1,4 +1,4 @@
-import type { Painting } from '../types';
+import type { Painting } from '@/types';
 
 export const paintings: Painting[] = [
   { id: 1, title: 'Mona Lisa', artist: 'Leonardo da Vinci', year: 1503, dimensions: { width: 77, height: 53 }, location: 'Louvre' },

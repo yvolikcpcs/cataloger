@@ -1,13 +1,14 @@
-import type { Column } from "../types/table";
-import { Table } from "../shared/ui/table/Table";
+import type { Column } from "@/types/table";
+import { Table } from "@/shared/ui/table/Table";
+import type { HasId } from "@/types";
 
-type GenericPageProps<T extends { id: number | string }> = {
+type GenericPageProps<T extends HasId> = {
   title: string;
   data: T[];
   columns: Column<T>[];
 };
 
-export function GenericPage<T extends { id: number | string }>({
+export function GenericPage<T extends HasId>({
   title,
   data,
   columns,

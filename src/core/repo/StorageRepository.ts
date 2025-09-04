@@ -20,18 +20,18 @@ export class StorageRepository<T extends { id: string | number }> implements Rep
     return items ?? [];
   }
 
-  add(item: T): void {
+  async add(item: T): Promise<void> {
     const list = this.storage.get<T[]>(this.key, []);
     this.storage.set<T[]>(this.key, [...list, item]);
   }
 
-  update(id: T["id"], patch: Partial<T>): void {
+  async update(id: T["id"], patch: Partial<T>): Promise<void> {
     const list = this.storage.get<T[]>(this.key, []);
     const next = list.map(x => (x.id === id ? { ...x, ...patch } : x));
     this.storage.set<T[]>(this.key, next);
   }
 
-  remove(id: T["id"]): void {
+  async remove(id: T["id"]): Promise<void> {
     const list = this.storage.get<T[]>(this.key, []);
     this.storage.set<T[]>(this.key, list.filter(x => x.id !== id));
   }

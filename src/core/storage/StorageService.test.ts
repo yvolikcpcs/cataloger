@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { StorageService } from "./StorageService";
-import { MemoryAdapter } from "../storage/MemoryAdapter";
+import { MemoryAdapter } from "@/core/storage/MemoryAdapter";
 
 describe("StorageService with MemoryAdapter", () => {
   beforeEach(() => {

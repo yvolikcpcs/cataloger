@@ -1,4 +1,4 @@
-import type { Car } from '../types';
+import type { Car } from '@/types';
 
 export const cars: Car[] = [
   { id: 1, brand: 'Toyota', model: 'Camry', year: 2018, mileage: 50000, fuelType: 'gasoline', isUsed: true },

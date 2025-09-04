@@ -1,4 +1,4 @@
-import type { Book } from '../types';
+import type { Book } from '@/types';
 
 export const books: Book[] = [
   { id: 1, title: '1984', author: 'George Orwell', year: 1949 },

@@ -1,11 +1,12 @@
-import type { Column } from '../../types/table';
+import type { HasId } from '@/types';
+import type { Column } from '@/types/table';
 
 interface TableProps<T> {
   data: T[];
   columns: Column<T>[];
 }
 
-export function Table<T extends { id: number | string }>({ data, columns }: TableProps<T>) {
+export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
   if (!data?.length) return null;
   return (
     <div className="overflow-x-auto">
