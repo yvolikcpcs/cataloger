@@ -1,22 +1,37 @@
+import { useMemo, useState } from "react";
 import type { Column } from "@/types/table";
-import { Table } from "@/shared/ui/table/Table";
-import type { HasId } from "@/types";
+import { Table } from "@/shared/ui/table/Table"
+import { TableSearch } from "@/shared/ui/table/TableSearch";
 
-type GenericPageProps<T extends HasId> = {
+type GenericPageProps<T extends { id: number | string }> = {
   title: string;
   data: T[];
   columns: Column<T>[];
 };
 
-export function GenericPage<T extends HasId>({
+export function GenericPage<T extends { id: number | string }>({
   title,
   data,
   columns,
 }: GenericPageProps<T>) {
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return data;
+    return data.filter((row) =>
+      JSON.stringify(row).toLowerCase().includes(q)
+    );
+  }, [data, query]);
+
   return (
     <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-semibold">{title}</h1>
-      <Table<T> data={data} columns={columns} />
+      <div className="flex items-center justify-between gap-3">
+        <h1 className="text-2xl font-semibold">{title}</h1>
+        <TableSearch value={query} onChange={setQuery} />
+      </div>
+
+      <Table<T> data={filtered} columns={columns} />
     </div>
   );
 }
