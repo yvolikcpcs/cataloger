@@ -1,11 +1,11 @@
+import type { Address } from "./address";
+
 export type User = {
   id: number;
-  firstName: string;
-  lastName: string;
-  maidenName: string;
-  age: number;
-  gender: "male" | "female";
+  name: string;
+  username: string;
   email: string;
   phone: string;
-  birthDate: string;
+  website: string;
+  address: Address;
 };

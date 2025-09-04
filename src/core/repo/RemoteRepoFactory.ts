@@ -1,12 +1,7 @@
-import { StorageRepository } from "@/core/repo/StorageRepository";
-import { RemoteSeeder } from "@/core/init/RemoteSeeder";
+import { RemoteRepository } from "./RemoteRepository";
 
 export class RemoteRepoFactory {
-  static create<T extends { id: string | number }>(
-    key: string,
-    url: string,
-    path?: string
-  ) {
-    return new StorageRepository<T>(key, new RemoteSeeder<T>(url, path));
+  static create<T extends { id: string | number }>(url: string, path?: string) {
+    return new RemoteRepository<T>(url, path);
   }
 }

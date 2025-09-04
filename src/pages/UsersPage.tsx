@@ -3,33 +3,31 @@ import type { Column } from '../types/table';
 import { GenericPage } from './GenericPage';
 import { useEffect, useState } from 'react';
 import { RemoteRepoFactory } from '@/core/repo/RemoteRepoFactory';
+import { formatAddress } from '@/utils/address';
 
 const columns: Column<User>[] = [
-  { key: 'id', label: 'ID' },
-  { key: 'firstName', label: 'First name' },
-  { key: 'lastName', label: 'Last name' },
-  { key: 'age'},
-  { key: 'maidenName'},
-  { key: 'age' },
-  { key: 'gender' },
+  { key: 'id' },
+  { key: 'name' },
+  { key: 'username', label: 'User name' },
   { key: 'email', label: 'e-mail' },
   { key: 'phone' },
-  { key: 'birthDate', label: 'Date of birth' },
-
+  { key: 'website' },
+  {
+    key: 'address',
+    render: (user) => formatAddress(user.address),
+  }
 ];
 
 export default function UsersPage() {
   const [data, setData] = useState<User[]>([]);
   
   const repo = RemoteRepoFactory.create<User>(
-    'users',
-    'https://dummyjson.com/users',
-    'users'
+    "https://jsonplaceholder.typicode.com/users"
   );
 
   useEffect(() => {
     repo.getAll().then(setData);
-  }, [repo]);
+  }, []);
 
   return <GenericPage<User> title="Cars" data={data} columns={columns} />;
 }

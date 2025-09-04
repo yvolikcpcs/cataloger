@@ -1,5 +1,5 @@
 import type { Column } from "../types/table";
-import { Table } from "../shared/ui/Table";
+import { Table } from "../shared/ui/table/Table";
 
 type GenericPageProps<T extends { id: number | string }> = {
   title: string;
