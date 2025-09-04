@@ -5,19 +5,21 @@ import { cars as seedCars } from "@/data/cars";
 import { useStaticRepoData } from '@/core/hooks/useStaticRepoData';
 
 const columns: Column<Car>[] = [
-  { key: 'id', label: 'ID' },
-  { key: 'brand', label: 'Brand' },
-  { key: 'model', label: 'Model' },
-  { key: 'year', label: 'Year' },
+  { key: 'id', isSortable: true },
+  { key: 'brand', isSortable: true },
+  { key: 'model', isSortable: true },
+  { key: 'year', isSortable: true },
   {
     key: 'mileage',
     label: 'Mileage',
     render: (c) => `${c.mileage.toLocaleString()} km`,
+    isSortable: true
   },
   {
     key: 'fuelType',
     label: 'Fuel Type',
     render: (c) => c.fuelType.charAt(0).toUpperCase() + c.fuelType.slice(1),
+    isSortable: true
   },
   {
     key: 'isUsed',
@@ -31,6 +33,7 @@ const columns: Column<Car>[] = [
         {c.isUsed ? 'Used' : 'New'}
       </span>
     ),
+    isSortable: true
   },
 ];
 

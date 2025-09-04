@@ -5,10 +5,10 @@ import { GenericPage } from './GenericPage';
 import { useStaticRepoData } from '@/core/hooks/useStaticRepoData';
 
 const columns: Column<Painting>[] = [
-  { key: 'id', label: 'ID' },
-  { key: 'title', label: 'Title' },
-  { key: 'artist', label: 'Artist' },
-  { key: 'year', label: 'Year' },
+  { key: 'id', isSortable: true },
+  { key: 'title', isSortable: true },
+  { key: 'artist', isSortable: true },
+  { key: 'year', isSortable: true },
   { key: 'style', label: 'Style' },
   {
     key: 'dimensions',

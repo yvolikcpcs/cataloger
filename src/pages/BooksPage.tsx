@@ -6,10 +6,10 @@ import { GenericPage } from './GenericPage';
 import { useStaticRepoData } from '@/core/hooks/useStaticRepoData';
 
 const columns: Column<Book>[] = [
-  { key: 'id', label: 'ID' },
-  { key: 'title', label: 'Title' },
-  { key: 'author', label: 'Author' },
-  { key: 'year', label: 'Year' },
+  { key: 'id', isSortable: true },
+  { key: 'title', isSortable: true },
+  { key: 'author', isSortable: true },
+  { key: 'year', isSortable: true },
 ];
 
 export default function BooksPage() {

@@ -5,10 +5,10 @@ import { formatAddress } from '@/utils/address';
 import { useRemoteRepoData } from '@/core/hooks/useRemoteRepoData';
 
 const columns: Column<User>[] = [
-  { key: 'id' },
-  { key: 'name' },
-  { key: 'username', label: 'User name' },
-  { key: 'email', label: 'e-mail' },
+  { key: 'id', isSortable: true },
+  { key: 'name', isSortable: true },
+  { key: 'username', label: 'User name', isSortable: true },
+  { key: 'email', label: 'e-mail', isSortable: true },
   { key: 'phone' },
   { key: 'website' },
   {
