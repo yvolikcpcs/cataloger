@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import type { Column } from '@/types/table';
 import type { HasId } from '@/types';
 
-interface TableProps<T extends { id: number | string }> {
+interface TableProps<T extends HasId> {
   data: T[];
   columns: Column<T>[];
 }
@@ -21,14 +21,20 @@ export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
 
   const sorted = useMemo(() => {
     if (!sortKey) return data;
+    const activeCol = columns.find(c => String(c.key) === String(sortKey));
+    const getVal = (row: T) =>
+      activeCol?.sortAccessor
+        ? activeCol.sortAccessor(row)
+        : row[sortKey];
+
     return [...data].sort((a, b) => {
-      const av = normalize(a[sortKey]);
-      const bv = normalize(b[sortKey]);
+      const av = normalize(getVal(a));
+      const bv = normalize(getVal(b));
       if (av < bv) return dir === 'asc' ? -1 : 1;
       if (av > bv) return dir === 'asc' ? 1 : -1;
       return 0;
     });
-  }, [data, sortKey, dir]);
+  }, [data, sortKey, dir, columns]);
 
   const handleHeaderClick = (col: Column<T>) => {
     if (!col.isSortable) return;

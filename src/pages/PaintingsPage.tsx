@@ -14,6 +14,8 @@ const columns: Column<Painting>[] = [
     key: 'dimensions',
     label: 'Dimensions',
     render: (p) => `${p.dimensions.width}×${p.dimensions.height} cm`,
+    isSortable: true,
+    sortAccessor: (p) => p.dimensions.width * p.dimensions.height,
   },
   { key: 'location', label: 'Location' },
 ];
