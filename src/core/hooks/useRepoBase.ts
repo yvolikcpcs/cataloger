@@ -5,7 +5,7 @@ import type { HasId } from '@/types';
 export function useRepoBase<T extends HasId>(repo: Repository<T>) {
   const [data, setData] = useState<T[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<unknown>(null);
+  const [error, setError] = useState<Error | null>(null);
 
   const reload = useCallback(() => {
     setLoading(true);

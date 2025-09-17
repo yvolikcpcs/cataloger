@@ -9,7 +9,6 @@ export class StorageRepository<T extends { id: string | number }> implements Rep
     private readonly storage = StorageService.getInstance()
   ) {}
 
-  /** Возвращает данные; при первом вызове засеивает через seeder, если пусто. */
   async getAll(): Promise<T[]> {
     let items = this.storage.get<T[] | null>(this.key, null);
     if (items === null && this.seeder) {

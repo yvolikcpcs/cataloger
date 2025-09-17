@@ -18,6 +18,6 @@ const columns: Column<User>[] = [
 ];
 
 export default function UsersPage() {
-  const { data } = useRemoteRepoData<User>('https://jsonplaceholder.typicode.com/users');
-  return <GenericPage<User> title="Users" data={data} columns={columns} />;
+  const { data, loading, error, reload } = useRemoteRepoData<User>('https://jsonplaceholder.typicode.com/users');
+  return <GenericPage<User> title="Users" data={data} columns={columns} loading={loading} error={error ?? undefined} onRetry={reload}/>;
 }

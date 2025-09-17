@@ -54,6 +54,11 @@ export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
     return <span aria-hidden>{dir === 'asc' ? '▲' : '▼'}</span>;
   };
 
+  const formatItemValue = (value: T[keyof T]): string => {
+    if(Array.isArray(value)) return value.join(',');           
+    return String(value ?? '-');
+  }
+
   if (!sorted?.length) return null;
 
   return (
@@ -76,16 +81,25 @@ export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
             ))}
           </tr>
         </thead>
+
         <tbody>
-          {sorted.map((item) => (
-            <tr key={item.id} className="even:bg-white odd:bg-gray-50">
-              {columns.map(({ key, render }) => (
-                <td key={String(key)} className="px-4 py-3 text-sm text-gray-800">
-                  {render ? render(item) : String(item[key] ?? '-')}
-                </td>
-              ))}
+          {sorted.length === 0 ? (
+            <tr>
+              <td className="px-4 py-6 text-sm text-gray-500 italic" colSpan={columns.length}>
+                No results
+              </td>
             </tr>
-          ))}
+          ) : (
+            sorted.map((item) => (
+              <tr key={item.id} className="even:bg-white odd:bg-gray-50">
+                {columns.map(({ key, render }) => (
+                  <td key={String(key)} className="px-4 py-3 text-sm text-gray-800">
+                    {render ? render(item) : formatItemValue(item[key])}
+                  </td>
+                ))}
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

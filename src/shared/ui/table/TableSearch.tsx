@@ -3,6 +3,7 @@ type TableSearchProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 };
 
 export function TableSearch({
@@ -10,6 +11,7 @@ export function TableSearch({
   onChange,
   placeholder = "Search…",
   className = "",
+  disabled = false,
 }: TableSearchProps) {
   return (
     <div className={`p-2 flex justify-end ${className}`}>
@@ -17,7 +19,10 @@ export function TableSearch({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="border rounded px-2 py-1 text-sm"
+        disabled={disabled}
+        className={`border rounded px-2 py-1 text-sm ${
+          disabled ? "opacity-60 cursor-not-allowed" : ""
+        }`}
       />
     </div>
   );

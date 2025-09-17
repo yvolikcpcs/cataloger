@@ -1,4 +1,3 @@
-// src/core/repo/Repository.ts
 export interface Repository<T extends { id: string | number }> {
   getAll(): Promise<T[]>;
   add(item: T): Promise<void>;
