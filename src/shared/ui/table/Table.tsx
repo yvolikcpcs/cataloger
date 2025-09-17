@@ -5,9 +5,14 @@ import type { HasId } from '@/types';
 interface TableProps<T extends HasId> {
   data: T[];
   columns: Column<T>[];
+  onRowClick?: (row: T) => void; // NEW
 }
 
-export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
+export function Table<T extends HasId>({
+  data,
+  columns,
+  onRowClick,
+}: TableProps<T>) {
   const [sortKey, setSortKey] = useState<keyof T | null>(null);
   const [dir, setDir] = useState<'asc' | 'desc'>('asc');
 
@@ -86,29 +91,24 @@ export function Table<T extends HasId>({ data, columns }: TableProps<T>) {
         </thead>
 
         <tbody>
-          {sorted.length === 0 ? (
-            <tr>
-              <td
-                className="px-4 py-6 text-sm text-gray-500 italic"
-                colSpan={columns.length}
-              >
-                No results
-              </td>
+          {sorted.map((item) => (
+            <tr
+              key={item.id}
+              className={`even:bg-white odd:bg-gray-50 ${
+                onRowClick ? 'hover:bg-indigo-50 cursor-pointer' : ''
+              }`}
+              onClick={() => onRowClick?.(item)}
+            >
+              {columns.map(({ key, render }) => (
+                <td
+                  key={String(key)}
+                  className="px-4 py-3 text-sm text-gray-800"
+                >
+                  {render ? render(item) : formatItemValue(item[key])}
+                </td>
+              ))}
             </tr>
-          ) : (
-            sorted.map((item) => (
-              <tr key={item.id} className="even:bg-white odd:bg-gray-50">
-                {columns.map(({ key, render }) => (
-                  <td
-                    key={String(key)}
-                    className="px-4 py-3 text-sm text-gray-800"
-                  >
-                    {render ? render(item) : formatItemValue(item[key])}
-                  </td>
-                ))}
-              </tr>
-            ))
-          )}
+          ))}
         </tbody>
       </table>
     </div>

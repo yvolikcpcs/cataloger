@@ -1,6 +1,7 @@
 import type { Painting } from '@/types';
 import type { Column } from '@/types/table';
 import { GenericPage } from './GenericPage';
+import { useNavigate } from 'react-router-dom';
 
 const columns: Column<Painting>[] = [
   { key: 'id', isSortable: true },
@@ -19,7 +20,14 @@ const columns: Column<Painting>[] = [
 ];
 
 export default function PaintingsPage() {
-  return <GenericPage<Painting> title="Paintings" resource="paintings" columns={columns} />;
+  const navigate = useNavigate();
+
+  return (
+    <GenericPage<Painting>
+      title="Paintings"
+      resource="paintings"
+      columns={columns}
+      onRowClick={(c) => navigate(`/recipes/${c.id}`)}
+    />
+  );
 }
-
-

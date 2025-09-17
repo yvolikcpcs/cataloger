@@ -2,6 +2,7 @@ import type { User } from '@/types';
 import type { Column } from '@/types/table';
 import { GenericPage } from './GenericPage';
 import { formatAddress } from '@/utils/address';
+import { useNavigate } from 'react-router-dom';
 
 const columns: Column<User>[] = [
   { key: 'id', isSortable: true },
@@ -13,9 +14,18 @@ const columns: Column<User>[] = [
   {
     key: 'address',
     render: (user) => formatAddress(user.address),
-  }
+  },
 ];
 
 export default function UsersPage() {
-  return <GenericPage<User> title="Users" resource="users" columns={columns} />;
+  const navigate = useNavigate();
+
+  return (
+    <GenericPage<User>
+      title="Users"
+      resource="users"
+      columns={columns}
+      onRowClick={(c) => navigate(`/users/${c.id}`)}
+    />
+  );
 }

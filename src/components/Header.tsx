@@ -1,17 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 const routes = [
-  { path: "/books", label: "Books" },
-  { path: "/cars", label: "Cars" },
-  { path: "/paintings", label: "Paintings" },
-  { path: "/users", label: "Users" },
-  { path: "/recipes", label: "Recipes" },
+  { path: '/books', label: 'Books' },
+  { path: '/cars', label: 'Cars' },
+  { path: '/paintings', label: 'Paintings' },
+  { path: '/users', label: 'Users' },
+  { path: '/recipes', label: 'Recipes' },
 ];
 
 const Header = () => {
-
-  const linkClass = ({ isActive  }: { isActive: boolean }) =>
-  `px-3 py-1.5 rounded ${isActive ? 'bg-indigo-600 text-white' : 'text-gray-700 hover:bg-gray-100'}`;
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `px-3 py-1.5 rounded ${isActive ? 'bg-indigo-600 text-white' : 'text-gray-700 hover:bg-gray-100'}`;
 
   return (
     <header className="bg-white/80 backdrop-blur sticky top-0 z-10 border-b">

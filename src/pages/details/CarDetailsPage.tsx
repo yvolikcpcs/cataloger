@@ -1,24 +1,21 @@
 import type { Car } from '@/types';
-import type { Column } from '@/types/table';
-import { GenericPage } from './GenericPage';
-import { useNavigate } from 'react-router-dom';
+import type { DetailField } from '../GenericDetailsPage';
+import { GenericDetailsPage } from '../GenericDetailsPage';
 
-const columns: Column<Car>[] = [
-  { key: 'id', isSortable: true },
-  { key: 'brand', isSortable: true },
-  { key: 'model', isSortable: true },
-  { key: 'year', isSortable: true },
+const fields: DetailField<Car>[] = [
+  { key: 'id' },
+  { key: 'brand' },
+  { key: 'model' },
+  { key: 'year' },
   {
     key: 'mileage',
     label: 'Mileage',
     render: (c) => `${c.mileage.toLocaleString()} km`,
-    isSortable: true,
   },
   {
     key: 'fuelType',
     label: 'Fuel Type',
     render: (c) => c.fuelType.charAt(0).toUpperCase() + c.fuelType.slice(1),
-    isSortable: true,
   },
   {
     key: 'isUsed',
@@ -34,19 +31,16 @@ const columns: Column<Car>[] = [
         {c.isUsed ? 'Used' : 'New'}
       </span>
     ),
-    isSortable: true,
   },
 ];
 
-export default function CarsPage() {
-  const navigate = useNavigate();
-
+export default function BookDetailsPage() {
   return (
-    <GenericPage<Car>
-      title="Cars"
+    <GenericDetailsPage<Car>
       resource="cars"
-      columns={columns}
-      onRowClick={(c) => navigate(`/cars/${c.id}`)}
+      title="Car details"
+      fields={fields}
+      backTo="/cars"
     />
   );
 }

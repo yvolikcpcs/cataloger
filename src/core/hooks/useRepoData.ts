@@ -1,8 +1,8 @@
-import { getRepository } from '@/core/repo/repoRegistry';
+import { repoFactory } from '@/core/repo/RepoFactory';
 import { useRepoBase } from './useRepoBase';
 import type { HasId } from '@/types';
 
 export function useRepoData<T extends HasId>(resource: string) {
-  const repo = getRepository<T>(resource);
+  const repo = repoFactory.get<T>(resource);
   return useRepoBase(repo);
 }

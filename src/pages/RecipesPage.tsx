@@ -1,6 +1,7 @@
 import type { Recipe } from '@/types';
 import type { Column } from '@/types/table';
 import { GenericPage } from './GenericPage';
+import { useNavigate } from 'react-router-dom';
 
 const columns: Column<Recipe>[] = [
   { key: 'id', isSortable: true },
@@ -16,5 +17,14 @@ const columns: Column<Recipe>[] = [
 ];
 
 export default function RecipesPage() {
-  return <GenericPage<Recipe> title="Recipes" resource="recipes" columns={columns} />;
+  const navigate = useNavigate();
+
+  return (
+    <GenericPage<Recipe>
+      title="Recipes"
+      resource="recipes"
+      columns={columns}
+      onRowClick={(c) => navigate(`/recipes/${c.id}`)}
+    />
+  );
 }

@@ -1,11 +1,10 @@
-// src/core/hooks/useRepoItem.ts
 import { useCallback, useEffect, useState } from 'react';
 import type { HasId } from '@/types';
 import type { Repository } from '@/core/repo/Repository';
-import { getRepository } from '@/core/repo/repoRegistry';
+import { repoFactory } from '@/core/repo/RepoFactory';
 
 export function useRepoItem<T extends HasId>(resource: string, id: T['id']) {
-  const repo: Repository<T> = getRepository<T>(resource);
+  const repo: Repository<T> = repoFactory.get<T>(resource);
 
   const [item, setItem] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
