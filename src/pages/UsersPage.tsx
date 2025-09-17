@@ -2,7 +2,6 @@ import type { User } from '@/types';
 import type { Column } from '@/types/table';
 import { GenericPage } from './GenericPage';
 import { formatAddress } from '@/utils/address';
-import { useRemoteRepoData } from '@/core/hooks/useRemoteRepoData';
 
 const columns: Column<User>[] = [
   { key: 'id', isSortable: true },
@@ -18,6 +17,5 @@ const columns: Column<User>[] = [
 ];
 
 export default function UsersPage() {
-  const { data, loading, error, reload } = useRemoteRepoData<User>('https://jsonplaceholder.typicode.com/users');
-  return <GenericPage<User> title="Users" data={data} columns={columns} loading={loading} error={error ?? undefined} onRetry={reload}/>;
+  return <GenericPage<User> title="Users" resource="users" columns={columns} />;
 }

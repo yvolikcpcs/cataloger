@@ -5,7 +5,7 @@ import PaintingsPage from '@/pages/PaintingsPage';
 import UsersPage from '@/pages/UsersPage';
 import HomePage from '@/pages/HomePage';
 import Header from '@/components/Header';
-import RecipiesPage from '@/pages/RecipiesPage';
+import RecipesPage from '@/pages/RecipesPage';
 
 export default function App() {
 
@@ -22,7 +22,7 @@ export default function App() {
             <Route path="/cars" element={<CarsPage />} />
             <Route path="/paintings" element={<PaintingsPage />} />
             <Route path="/users" element={<UsersPage />} />
-            <Route path="/recipies" element={<RecipiesPage />} />
+            <Route path="/recipes" element={<RecipesPage />} />
 
             <Route
               path="*"

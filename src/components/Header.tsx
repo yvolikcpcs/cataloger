@@ -5,12 +5,12 @@ const routes = [
   { path: "/cars", label: "Cars" },
   { path: "/paintings", label: "Paintings" },
   { path: "/users", label: "Users" },
-  { path: "/recipies", label: "Recipies" },
+  { path: "/recipes", label: "Recipes" },
 ];
 
 const Header = () => {
 
-  const linkClass = ({ isActive }: { isActive: boolean }) =>
+  const linkClass = ({ isActive  }: { isActive: boolean }) =>
   `px-3 py-1.5 rounded ${isActive ? 'bg-indigo-600 text-white' : 'text-gray-700 hover:bg-gray-100'}`;
 
   return (

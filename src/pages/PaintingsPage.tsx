@@ -1,8 +1,6 @@
 import type { Painting } from '@/types';
 import type { Column } from '@/types/table';
-import { paintings as seedPaintings } from '@/data/paintings';
 import { GenericPage } from './GenericPage';
-import { useStaticRepoData } from '@/core/hooks/useStaticRepoData';
 
 const columns: Column<Painting>[] = [
   { key: 'id', isSortable: true },
@@ -21,6 +19,7 @@ const columns: Column<Painting>[] = [
 ];
 
 export default function PaintingsPage() {
-  const { data } = useStaticRepoData<Painting>('paintings', seedPaintings);
-  return <GenericPage<Painting> title="Paintings" data={data} columns={columns} />;
+  return <GenericPage<Painting> title="Paintings" resource="paintings" columns={columns} />;
 }
+
+

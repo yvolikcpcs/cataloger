@@ -1,8 +1,6 @@
 import type { Car } from '@/types';
 import type { Column } from '@/types/table';
 import { GenericPage } from './GenericPage';
-import { cars as seedCars } from "@/data/cars";
-import { useStaticRepoData } from '@/core/hooks/useStaticRepoData';
 
 const columns: Column<Car>[] = [
   { key: 'id', isSortable: true },
@@ -37,8 +35,6 @@ const columns: Column<Car>[] = [
   },
 ];
 
-
 export default function CarsPage() {
-  const { data } = useStaticRepoData<Car>('cars', seedCars);
-  return <GenericPage<Car> title="Cars" data={data} columns={columns} />;
+  return <GenericPage<Car> title="Cars" resource="cars" columns={columns} />;
 }

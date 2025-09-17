@@ -1,3 +1,4 @@
+// src/pages/GenericPage.tsx
 import { useMemo, useState } from "react";
 import type { Column } from "@/types/table";
 import { Table } from "@/shared/ui/table/Table";
@@ -5,24 +6,20 @@ import { TableSearch } from "@/shared/ui/table/TableSearch";
 import type { HasId } from "@/types";
 import { Spinner } from "@/shared/ui/Spinner";
 import { ErrorAlert } from "@/shared/ui/ErrorAlert";
+import { useRepoData } from "@/core/hooks/useRepoData";
 
 type GenericPageProps<T extends HasId> = {
   title: string;
-  data: T[];
+  resource: string;
   columns: Column<T>[];
-  loading?: boolean;
-  error?: Error;
-  onRetry?: () => void;
 };
 
 export function GenericPage<T extends HasId>({
   title,
-  data,
+  resource,
   columns,
-  loading = false,
-  error,
-  onRetry,
 }: GenericPageProps<T>) {
+  const { data, loading, error, reload } = useRepoData<T>(resource);
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -31,8 +28,7 @@ export function GenericPage<T extends HasId>({
     return data.filter((row) => JSON.stringify(row).toLowerCase().includes(q));
   }, [data, query]);
 
-  const errorMsg =
-    error instanceof Error ? error.message : error ? String(error) : "";
+  const errorMsg = error instanceof Error ? error.message : error ? String(error) : "";
 
   return (
     <div className="p-6 space-y-4">
@@ -41,7 +37,7 @@ export function GenericPage<T extends HasId>({
         <TableSearch value={query} onChange={setQuery} disabled={loading} />
       </div>
 
-      {error && <ErrorAlert message={errorMsg} onRetry={onRetry} />}
+      {error && <ErrorAlert message={errorMsg} onRetry={reload} />}
 
       {loading ? (
         <Spinner label="Loading…" />
