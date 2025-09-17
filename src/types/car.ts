@@ -1,4 +1,4 @@
-import type { FuelType } from "./shared";
+import type { FuelType } from './shared';
 
 export interface Car {
   id: number;

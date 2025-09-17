@@ -9,8 +9,8 @@ type TableSearchProps = {
 export function TableSearch({
   value,
   onChange,
-  placeholder = "Search…",
-  className = "",
+  placeholder = 'Search…',
+  className = '',
   disabled = false,
 }: TableSearchProps) {
   return (
@@ -21,7 +21,7 @@ export function TableSearch({
         placeholder={placeholder}
         disabled={disabled}
         className={`border rounded px-2 py-1 text-sm ${
-          disabled ? "opacity-60 cursor-not-allowed" : ""
+          disabled ? 'opacity-60 cursor-not-allowed' : ''
         }`}
       />
     </div>
