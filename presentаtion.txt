@@ -1,0 +1,134 @@
+ Цель 1: Основы TypeScript — типы, аннотации, массивы
+
+// models/Book.ts
+export type Book = {
+  id: number;
+  title: string;
+  author: string;
+  year: number;
+  isRead: boolean;
+};
+
+// data/books.ts
+import { Book } from '../models/Book';
+
+export const books: Book[] = [
+  { id: 1, title: '1984', author: 'George Orwell', year: 1949, isRead: true },
+  { id: 2, title: 'Brave New World', author: 'Aldous Huxley', year: 1932, isRead: false },
+];
+
+// Цель 2: Интерфейсы и структурирование
+
+// models/Car.ts
+export interface Car {
+  id: number;
+  brand: string;
+  model: string;
+  year: number;
+  mileage: number;
+}
+
+// services/EntityCatalog.ts
+export interface EntityCatalog<T> {
+  add(item: T): void;
+  getAll(): T[];
+  find(predicate: (item: T) => boolean): T[];
+}
+
+// Цель 3: Дженерики
+
+// services/GenericCatalog.ts
+import { EntityCatalog } from './EntityCatalog';
+
+export class GenericCatalog<T> implements EntityCatalog<T> {
+  private items: T[] = [];
+
+  add(item: T): void {
+    this.items.push(item);
+  }
+
+  getAll(): T[] {
+    return this.items;
+  }
+
+  find(predicate: (item: T) => boolean): T[] {
+    return this.items.filter(predicate);
+  }
+}
+
+// Пример использования:
+// const bookCatalog = new GenericCatalog<Book>();
+// bookCatalog.add({ id: 3, title: 'Dune', author: 'Frank Herbert', year: 1965, isRead: true });
+
+// Цель 4: Дизайн-паттерны
+
+// utils/BookFactory.ts
+import { Book } from '../models/Book';
+
+let nextId = 1;
+export const BookFactory = {
+  create: (title: string, author: string, year: number): Book => ({
+    id: nextId++,
+    title,
+    author,
+    year,
+    isRead: false,
+  }),
+};
+
+// services/Logger.ts (Singleton)
+export class Logger {
+  private static instance: Logger;
+  private constructor() {}
+
+  static getInstance(): Logger {
+    if (!Logger.instance) {
+      Logger.instance = new Logger();
+    }
+    return Logger.instance;
+  }
+
+  log(message: string) {
+    console.log(`[LOG]: ${message}`);
+  }
+}
+
+// Цель 5: Модульность и отказоустойчивость
+
+// services/StorageService.ts
+export class StorageService<T> {
+  constructor(private storageKey: string) {}
+
+  save(data: T): void {
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(data));
+    } catch (e) {
+      console.error('Failed to save:', e);
+    }
+  }
+
+  load(): T | null {
+    try {
+      const raw = localStorage.getItem(this.storageKey);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) {
+      console.error('Failed to load:', e);
+      return null;
+    }
+  }
+}
+
+// index.ts — точка входа
+import { BookFactory } from './utils/BookFactory';
+import { GenericCatalog } from './services/GenericCatalog';
+import { StorageService } from './services/StorageService';
+import { Logger } from './services/Logger';
+
+const catalog = new GenericCatalog();
+catalog.add(BookFactory.create('The Hobbit', 'J.R.R. Tolkien', 1937));
+
+const storage = new StorageService('books');
+storage.save(catalog.getAll());
+
+const logger = Logger.getInstance();
+logger.log('Book saved to localStorage.');

@@ -1,4 +1,4 @@
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import BooksPage from '@/pages/BooksPage';
 import CarsPage from '@/pages/CarsPage';
 import PaintingsPage from '@/pages/PaintingsPage';
@@ -8,8 +8,6 @@ import Header from '@/components/Header';
 import RecipesPage from '@/pages/RecipesPage';
 
 export default function App() {
-
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
