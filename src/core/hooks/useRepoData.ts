@@ -1,9 +1,8 @@
-import { useMemo } from "react";
-import { makeApiRepository } from "@/core/repo/ApiRepository";
-import { useRepoBase } from "./useRepoBase";
-import type { HasId } from "@/types";
+import { getRepository } from '@/core/repo/repoRegistry';
+import { useRepoBase } from './useRepoBase';
+import type { HasId } from '@/types';
 
 export function useRepoData<T extends HasId>(resource: string) {
-  const repo = useMemo(() => makeApiRepository<T>(resource), [resource]);
+  const repo = getRepository<T>(resource);
   return useRepoBase(repo);
 }

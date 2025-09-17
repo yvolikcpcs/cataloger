@@ -28,6 +28,10 @@ export function makeApiRepository<T extends HasId>(
       const r = await request(root);
       return (await r.json()) as T[];
     },
+    async getById(id) {
+      const r = await request(`${root}/${id}`);
+      return (await r.json()) as T;
+    },
     async add(item) {
       await request(root, { method: 'POST', body: JSON.stringify(item) });
     },

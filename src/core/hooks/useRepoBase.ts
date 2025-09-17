@@ -10,10 +10,16 @@ export function useRepoBase<T extends HasId>(repo: Repository<T>) {
   const reload = useCallback(() => {
     setLoading(true);
     setError(null);
-    repo.getAll().then(setData).catch(setError).finally(() => setLoading(false));
+    repo
+      .getAll()
+      .then(setData)
+      .catch(setError)
+      .finally(() => setLoading(false));
   }, [repo]);
 
-  useEffect(() => { reload(); }, [reload]);
+  useEffect(() => {
+    reload();
+  }, [reload]);
 
   return { data, loading, error, repo, reload, setData };
 }
