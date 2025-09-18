@@ -6,7 +6,7 @@ import { formatItemValue, sortData } from '@/utils';
 interface TableProps<T extends HasId> {
   data: T[];
   columns: Column<T>[];
-  onRowClick?: (row: T) => void; // NEW
+  onRowClick?: (row: T) => void;
 }
 
 export function Table<T extends HasId>({

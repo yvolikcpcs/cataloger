@@ -11,7 +11,7 @@ type GenericPageProps<T extends HasId> = {
   title: string;
   resource: string;
   columns: Column<T>[];
-  onRowClick?: (row: T) => void; // NEW
+  onRowClick?: (row: T) => void;
 };
 
 export function GenericPage<T extends HasId>({

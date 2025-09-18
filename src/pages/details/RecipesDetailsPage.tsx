@@ -15,11 +15,11 @@ const fields: DetailField<Recipe>[] = [
   { key: 'mealType' },
 ];
 
-export default function UserDetailsPage() {
+export default function RecipesDetailsPage() {
   return (
     <GenericDetailsPage<Recipe>
       resource="recipes"
-      title="Recipy details"
+      title="Recipe details"
       fields={fields}
       backTo="/recipes"
     />

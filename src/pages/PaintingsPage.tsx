@@ -27,7 +27,7 @@ export default function PaintingsPage() {
       title="Paintings"
       resource="paintings"
       columns={columns}
-      onRowClick={(c) => navigate(`/recipes/${c.id}`)}
+      onRowClick={(c) => navigate(`/paintings/${c.id}`)}
     />
   );
 }
