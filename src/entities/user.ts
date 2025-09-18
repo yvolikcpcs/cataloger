@@ -1,6 +1,6 @@
-import type { Address } from "./address";
+import type { Address } from '@/shared/types';
 
-export type User = {
+export interface User {
   id: number;
   name: string;
   username: string;
@@ -8,4 +8,4 @@ export type User = {
   phone: string;
   website: string;
   address: Address;
-};
+}

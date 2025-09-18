@@ -34,7 +34,7 @@ const fields: DetailField<Car>[] = [
   },
 ];
 
-export default function BookDetailsPage() {
+export default function CarDetailsPage() {
   return (
     <GenericDetailsPage<Car>
       resource="cars"

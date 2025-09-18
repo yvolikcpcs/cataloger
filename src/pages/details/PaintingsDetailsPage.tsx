@@ -16,7 +16,7 @@ const fields: DetailField<Painting>[] = [
   { key: 'location', label: 'Location' },
 ];
 
-export default function UserDetailsPage() {
+export default function PaintingsDetailsPage() {
   return (
     <GenericDetailsPage<Painting>
       resource="paintings"

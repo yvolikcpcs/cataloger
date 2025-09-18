@@ -1,4 +1,4 @@
-import type { Dimensions } from "./shared";
+import type { Dimensions } from '@/shared/types';
 
 export interface Painting {
   id: number;

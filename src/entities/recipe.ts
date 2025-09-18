@@ -1,4 +1,4 @@
-export type Recipe = {
+export interface Recipe {
   id: number;
   name: string;
   ingredients: string[];
@@ -9,4 +9,4 @@ export type Recipe = {
   caloriesPerServing: number;
   rating: number;
   mealType: string[];
-};
+}
