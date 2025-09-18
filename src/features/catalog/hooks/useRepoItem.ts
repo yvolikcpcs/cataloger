@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { HasId } from '@/types';
-import type { Repository } from '@/core/repo/Repository';
-import { repoFactory } from '@/core/repo/RepoFactory';
+import type { HasId } from '@/shared/types';
+import type { Repository } from '@/core/repo';
+import { repoFactory } from '@/core/repo';
 
 export function useRepoItem<T extends HasId>(resource: string, id: T['id']) {
   const repo: Repository<T> = repoFactory.get<T>(resource);

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import type { Book } from '@/types';
-import type { Column } from '@/types/table';
-import { GenericPage } from './GenericPage';
+import type { Book } from '@/entities';
+import type { Column } from '@/shared/types/table';
+import { GenericPage } from '@/features/catalog';
 
 const columns: Column<Book>[] = [
   { key: 'id', isSortable: true },

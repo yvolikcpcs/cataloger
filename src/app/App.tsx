@@ -15,6 +15,7 @@ import CarDetailsPage from '@/pages/details/CarDetailsPage';
 import UserDetailsPage from '@/pages/details/UserDetailsPage';
 import RecipesDetailsPage from '@/pages/details/RecipesDetailsPage';
 import PaintingsDetailsPage from '@/pages/details/PaintingsDetailsPage';
+import { AppRoutes } from './AppRoutes';
 
 export default function App() {
   return (
@@ -23,41 +24,7 @@ export default function App() {
 
       <main className="mx-auto max-w-6xl px-4 py-6">
         <section className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 p-4 md:p-6">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-
-            {/* books */}
-            <Route path="/books" element={<BooksPage />} />
-            <Route path="/books/:id" element={<BookDetailsPage />} />
-
-            {/* cars */}
-            <Route path="/cars" element={<CarsPage />} />
-            <Route path="/cars/:id" element={<CarDetailsPage />} />
-
-            {/* users */}
-            <Route path="/users" element={<UsersPage />} />
-            <Route path="/users/:id" element={<UserDetailsPage />} />
-
-            {/* paintings */}
-            <Route path="/paintings" element={<PaintingsPage />} />
-            <Route path="/paintings/:id" element={<PaintingsDetailsPage />} />
-
-            {/* recipes */}
-            <Route path="/recipes" element={<RecipesPage />} />
-            <Route path="/recipes/:id" element={<RecipesDetailsPage />} />
-
-            {/* fallback */}
-            <Route
-              path="*"
-              element={
-                <div className="text-center py-16">
-                  <h2 className="text-lg font-medium text-gray-900">
-                    Page not found
-                  </h2>
-                </div>
-              }
-            />
-          </Routes>
+          <AppRoutes />
         </section>
       </main>
 

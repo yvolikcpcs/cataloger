@@ -1,6 +1,6 @@
-import type { Car } from '@/types';
-import type { Column } from '@/types/table';
-import { GenericPage } from './GenericPage';
+import type { Car } from '@/entities';
+import type { Column } from '@/shared/types/table';
+import { GenericPage } from '@/features/catalog';
 import { useNavigate } from 'react-router-dom';
 
 const columns: Column<Car>[] = [

@@ -1,6 +1,6 @@
-import type { Recipe } from '@/types';
-import type { DetailField } from '../GenericDetailsPage';
-import { GenericDetailsPage } from '../GenericDetailsPage';
+import type { Recipe } from '@/entities';
+import type { DetailField } from '@/features/catalog';
+import { GenericDetailsPage } from '@/features/catalog';
 
 const fields: DetailField<Recipe>[] = [
   { key: 'id' },

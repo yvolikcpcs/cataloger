@@ -1,5 +1,5 @@
-import type { HasId } from '@/types';
-import type { Repository } from './Repository';
+import type { HasId } from '@/shared/types';
+import type { Repository } from '@/core/repo';
 
 export function makeApiRepository<T extends HasId>(
   resource: string,

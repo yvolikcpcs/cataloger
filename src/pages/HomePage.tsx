@@ -5,7 +5,8 @@ export default function HomePage() {
         Practical TypeScript Application Project
       </h1>
       <p className="mt-3 text-lg text-gray-600">
-        A mini catalog built to practice type safety, generics, and architecture with TypeScript + React.
+        A mini catalog built to practice type safety, generics, and architecture
+        with TypeScript + React.
       </p>
     </div>
   );

@@ -1,6 +1,6 @@
-import type { Car } from '@/types';
-import type { DetailField } from '../GenericDetailsPage';
-import { GenericDetailsPage } from '../GenericDetailsPage';
+import type { Car } from '@/entities';
+import type { DetailField } from '@/features/catalog';
+import { GenericDetailsPage } from '@/features/catalog';
 
 const fields: DetailField<Car>[] = [
   { key: 'id' },

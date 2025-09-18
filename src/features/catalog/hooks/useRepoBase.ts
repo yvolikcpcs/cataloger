@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { Repository } from '@/core/repo/Repository';
-import type { HasId } from '@/types';
+import type { Repository } from '@/core/repo';
+import type { HasId } from '@/shared/types';
 
 export function useRepoBase<T extends HasId>(repo: Repository<T>) {
   const [data, setData] = useState<T[]>([]);

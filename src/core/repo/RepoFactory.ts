@@ -1,6 +1,6 @@
-import type { HasId } from '@/types';
-import type { Repository } from './Repository';
-import { makeApiRepository } from './ApiRepository';
+import type { HasId } from '@/shared/types';
+import type { Repository } from '@/core/repo';
+import { makeApiRepository } from '@/core/repo';
 
 export class RepoFactory {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

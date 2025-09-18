@@ -1,6 +1,6 @@
-import type { User } from '@/types';
-import type { DetailField } from '../GenericDetailsPage';
-import { GenericDetailsPage } from '../GenericDetailsPage';
+import type { User } from '@/entities';
+import type { DetailField } from '@/features/catalog';
+import { GenericDetailsPage } from '@/features/catalog';
 import { formatAddress } from '@/utils/address';
 
 const fields: DetailField<User>[] = [

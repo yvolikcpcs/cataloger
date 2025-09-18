@@ -1,6 +1,6 @@
-import type { Painting } from '@/types';
-import type { DetailField } from '../GenericDetailsPage';
-import { GenericDetailsPage } from '../GenericDetailsPage';
+import type { Painting } from '@/entities';
+import type { DetailField } from '@/features/catalog';
+import { GenericDetailsPage } from '@/features/catalog';
 
 const fields: DetailField<Painting>[] = [
   { key: 'id' },

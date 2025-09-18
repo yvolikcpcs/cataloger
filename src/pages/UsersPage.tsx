@@ -1,6 +1,6 @@
-import type { User } from '@/types';
-import type { Column } from '@/types/table';
-import { GenericPage } from './GenericPage';
+import type { User } from '@/entities';
+import type { Column } from '@/shared/types/table';
+import { GenericPage } from '@/features/catalog';
 import { formatAddress } from '@/utils/address';
 import { useNavigate } from 'react-router-dom';
 

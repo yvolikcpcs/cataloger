@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
-import type { HasId } from '@/types';
-import { useRepoItem } from '@/core/hooks/useRepoItem';
+import type { HasId } from '@/shared/types';
+import { useRepoItem } from '@/features/catalog/hooks/useRepoItem';
 import { Spinner } from '@/shared/ui/Spinner';
 import { ErrorAlert } from '@/shared/ui/ErrorAlert';
 

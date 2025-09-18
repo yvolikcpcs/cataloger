@@ -1,4 +1,4 @@
-import type { HasId } from '@/types';
+import type { HasId } from '@/shared/types';
 
 export interface Repository<T extends HasId> {
   getAll(): Promise<T[]>;

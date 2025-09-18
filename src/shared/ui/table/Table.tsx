@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import type { Column } from '@/types/table';
-import type { HasId } from '@/types';
+import type { Column } from '@/shared/types/table';
+import type { HasId } from '@/shared/types';
+import { formatItemValue, sortData } from '@/utils';
 
 interface TableProps<T extends HasId> {
   data: T[];
@@ -16,28 +17,10 @@ export function Table<T extends HasId>({
   const [sortKey, setSortKey] = useState<keyof T | null>(null);
   const [dir, setDir] = useState<'asc' | 'desc'>('asc');
 
-  const normalize = (v: unknown): number | string => {
-    if (v instanceof Date) return v.getTime();
-    if (typeof v === 'number') return v;
-    if (typeof v === 'boolean') return Number(v);
-    if (typeof v === 'string') return v.toLowerCase();
-    return String(v ?? '').toLowerCase();
-  };
-
-  const sorted = useMemo(() => {
-    if (!sortKey) return data;
-    const activeCol = columns.find((c) => String(c.key) === String(sortKey));
-    const getVal = (row: T) =>
-      activeCol?.sortAccessor ? activeCol.sortAccessor(row) : row[sortKey];
-
-    return [...data].sort((a, b) => {
-      const av = normalize(getVal(a));
-      const bv = normalize(getVal(b));
-      if (av < bv) return dir === 'asc' ? -1 : 1;
-      if (av > bv) return dir === 'asc' ? 1 : -1;
-      return 0;
-    });
-  }, [data, sortKey, dir, columns]);
+  const sorted = useMemo(
+    () => sortData(data, columns, sortKey, dir),
+    [data, columns, sortKey, dir],
+  );
 
   const handleHeaderClick = (col: Column<T>) => {
     if (!col.isSortable) return;
@@ -60,11 +43,6 @@ export function Table<T extends HasId>({
         </span>
       );
     return <span aria-hidden>{dir === 'asc' ? '▲' : '▼'}</span>;
-  };
-
-  const formatItemValue = (value: T[keyof T]): string => {
-    if (Array.isArray(value)) return value.join(',');
-    return String(value ?? '-');
   };
 
   if (!sorted?.length) return null;
