@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Column } from '@/shared/types/table';
 import type { HasId } from '@/shared/types';
-import { formatItemValue, sortData } from '@/utils';
+import { formatValue, sortData } from '@/utils';
 
 interface TableProps<T extends HasId> {
   data: T[];
@@ -82,7 +82,7 @@ export function Table<T extends HasId>({
                   key={String(key)}
                   className="px-4 py-3 text-sm text-gray-800"
                 >
-                  {render ? render(item) : formatItemValue(item[key])}
+                  {render ? render(item) : formatValue(item[key])}
                 </td>
               ))}
             </tr>

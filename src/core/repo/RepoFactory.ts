@@ -5,10 +5,7 @@ import { makeApiRepository } from '@/core/repo';
 export class RepoFactory {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private cache = new Map<string, Repository<any>>();
-  private get envKey() {
-    const base = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '');
-    return base;
-  }
+  private envKey = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '');
 
   private key(resource: string) {
     return `${this.envKey}|${resource}`;

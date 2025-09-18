@@ -17,7 +17,7 @@ export function sortData<T extends HasId>(
 ): T[] {
   if (!sortKey) return data;
 
-  const activeCol = columns.find((c) => String(c.key) === String(sortKey));
+  const activeCol = columns.find((c) => c.key === sortKey);
   const getVal = (row: T) =>
     activeCol?.sortAccessor ? activeCol.sortAccessor(row) : row[sortKey];
 

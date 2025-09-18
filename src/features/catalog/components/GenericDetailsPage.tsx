@@ -3,6 +3,7 @@ import type { HasId } from '@/shared/types';
 import { useRepoItem } from '@/features/catalog/hooks/useRepoItem';
 import { Spinner } from '@/shared/ui/Spinner';
 import { ErrorAlert } from '@/shared/ui/ErrorAlert';
+import { formatValue } from '@/utils';
 
 export type DetailField<T> = {
   key: keyof T;
@@ -32,11 +33,6 @@ export function GenericDetailsPage<T extends HasId>({
   if (loading) return <Spinner label="Loading…" />;
   if (error) return <ErrorAlert message={error.message} onRetry={reload} />;
   if (!item) return <ErrorAlert message="Item not found" />;
-
-  const formatValue = (value: T[keyof T]): string => {
-    if (Array.isArray(value)) return value.join(', ');
-    return String(value ?? '—');
-  };
 
   return (
     <div className="p-6 space-y-6">

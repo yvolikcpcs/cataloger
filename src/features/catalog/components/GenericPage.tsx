@@ -6,6 +6,7 @@ import type { HasId } from '@/shared/types';
 import { Spinner } from '@/shared/ui/Spinner';
 import { ErrorAlert } from '@/shared/ui/ErrorAlert';
 import { useRepoData } from '@/features/catalog/hooks/useRepoData';
+import { useDebounced } from '@/shared/ui/table/useDebounced';
 
 type GenericPageProps<T extends HasId> = {
   title: string;
@@ -22,9 +23,11 @@ export function GenericPage<T extends HasId>({
 }: GenericPageProps<T>) {
   const { data, loading, error, reload } = useRepoData<T>(resource);
   const [query, setQuery] = useState('');
+  const debounced = useDebounced(query, 200);
 
   const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
+    const q = debounced.trim().toLowerCase();
+
     if (!q) return data;
     return data.filter((row) => JSON.stringify(row).toLowerCase().includes(q));
   }, [data, query]);
